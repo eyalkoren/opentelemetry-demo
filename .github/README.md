@@ -104,12 +104,12 @@ helm install otel-daemonset open-telemetry/opentelemetry-collector --values daem
 Suppose you want to see how your new processor is going to play out in this demo app. You can create a custom OpenTelemetry collector and test it within this demo app by following these steps:
 1. Follow the instructions in the [elastic-collector-componenets](https://github.com/elastic/opentelemetry-collector-components/blob/main/README.md) repo in order to build a Docker image
    that contains your custom component
-2. Edit the [deployment.yaml](kubernetes/elastic-helm/deployment.yaml) file:
+2. Edit the [deployment.yaml](https://github.com/elastic/opentelemetry-demo/blob/main/kubernetes/elastic-helm/deployment.yaml) file:
    - change the `opentelemetry-collector` [image definitions](https://github.com/elastic/opentelemetry-demo/blob/27b4923ba9acd316d3726a29aad1f7e32299bc8c/kubernetes/elastic-helm/deployment.yaml#L36)
    to point at your custom image repository and tag
    - add your component configuration to the proper sub-section of the [`config` section](https://github.com/elastic/opentelemetry-demo/blob/27b4923ba9acd316d3726a29aad1f7e32299bc8c/kubernetes/elastic-helm/deployment.yaml#L62). For example, if you are testing a processor, make sure to add its config to the `processors` sub-section.
    - add your component to the proper sub-section of the [`service` section](https://github.com/elastic/opentelemetry-demo/blob/27b4923ba9acd316d3726a29aad1f7e32299bc8c/kubernetes/elastic-helm/deployment.yaml#L96). For example, if you are testing a logs processor, make sure to add its config to the `processors` sub-section of the `logs` pipeline.
-3. If you wish to enable Kubernetes node level metrics collection, edit the [daemonset.yaml](kubernetes/elastic-helm/daemonset.yaml) file:
+3. If you wish to enable Kubernetes node level metrics collection, edit the [daemonset.yaml](https://github.com/elastic/opentelemetry-demo/blob/main/kubernetes/elastic-helm/daemonset.yaml) file:
    - change the [`image` section](https://github.com/elastic/opentelemetry-demo/blob/27b4923ba9acd316d3726a29aad1f7e32299bc8c/kubernetes/elastic-helm/deployment.yaml#L36)
    to point at your custom image repository and tag
    - add your component configuration to the proper sub-section of the [`config` section](https://github.com/elastic/opentelemetry-demo/blob/27b4923ba9acd316d3726a29aad1f7e32299bc8c/kubernetes/elastic-helm/daemonset.yaml#L57). For example, if you are testing a processor, make sure to add its config to the `processors` sub-section.
